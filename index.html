@@ -1,65 +1,118 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title> ❇️ Dmitriy Nikey ❇️ </title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento" rel="stylesheet">
-  <link rel="icon" href="favicon.ico">
+    <meta charset="utf-8"/>
+    <title>❇️ Dmitriy Nikey ❇️</title>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link
+            href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento"
+            rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.ico"/>
 </head>
 
 <body>
-  <div class="top-container">
-    <img class="top-cloud" src="images/cloud.png" alt="cloud">
+<div class="top-container">
+    <img class="top-cloud" src="images/cloud.png" alt="cloud"/>
     <div class="title-text">
-      <h1>I'm Dmitriy Nikey.</h1>
-      <h2>Software engineer</h2>
+        <h1>I'm Dmitriy Nikey.</h1>
+        <h2>Software engineer</h2>
     </div>
-    <img class="bottom-cloud" src="images/cloud.png" alt="cloud">
-    <img class="mountain" src="images/mountain.png" alt="mountain-img">
-  </div>
+    <img class="bottom-cloud" src="images/cloud.png" alt="cloud"/>
+    <img class="mountain" src="images/mountain.png" alt="mountain-img"/>
+</div>
 
-  <div class="middle-container">
+<div class="middle-container">
     <div class="profile">
-      <img src="images/nikey.png" alt="nikey-profile-img">
-      <h2>Hello.</h2>
-      <p class="intro">I am a Back-End developer for efficient solutions in enterprise. <br>
-      I ❤️ coffee and GYM.</p>
+        <img src="images/nikey.png" alt="nikey-profile-img"/>
+        <h2>Hello.</h2>
+        <p class="intro">
+            I am a Back-End developer for efficient solutions in enterprise.
+            <br/>
+            I ❤️ coffee and GYM.
+        </p>
     </div>
-    <hr>
+    <hr/>
     <div class="skills">
-      <h2>My Skills.</h2>
-      <div class="skill-row">
-        <img class="code-img" src="images/code.gif" alt="code-img">
-        <h3>Design & Development</h3>
-        <p>I started learning to code when I was 15 years old because 😀 I wanted to make my own console apps for analisys tennis bets 🎾 . Over time, I have gained a wealth of experience designing and developing back-end applications and enterprise solution..</p>
+        <h2>My Skills.</h2>
+        <div class="skill-row">
+            <img class="code-img" src="images/code.gif" alt="code-img"/>
+            <h3>Design & Development</h3>
+            <p>
+                I started learning to code when I was 15 years old because 😀 I
+                wanted to make my own console apps for analisys tennis bets 🎾 .
+                Over time, I have gained a wealth of experience designing and
+                developing back-end applications and enterprise solution..
+            </p>
+        </div>
+        <div class="skill-row">
+            <img class="tools-img" src="images/tools.png" alt="tools-img"/>
 
-      </div>
-      <div class="skill-row">
-        <img class="tools-img" src="images/tools.png" alt="tools-img">
-
-        <h3>Tools and Technologies</h3>
-        <p> 🔥 Strong knowledge of Python, Java, Go, classic C, HTML5, CSS, JavaScript </p>
-        <p> ☘️ SQL, PostgreSQL, MySQL, Algorithms, Data Structures, Docker, AWS, Google Cloud, Git, Linux </p>
-        <p> 🏖️ Flask, Django, PyUnit, PyTest, and Selenium  </p>
-      </div>
+            <h3>Tools and Technologies</h3>
+            <p>
+                🔥 Strong knowledge of Python, Java, Go, classic C, HTML5, CSS,
+                JavaScript
+            </p>
+            <p>
+                ☘️ SQL, PostgreSQL, MySQL, Algorithms, Data Structures, Docker, AWS,
+                Google Cloud, Git, Linux
+            </p>
+            <p>🏖️ Flask, Django, PyUnit, PyTest, and Selenium</p>
+        </div>
     </div>
-    <hr>
+    <hr/>
     <div class="contact-me">
-      <h2>Get In Touch</h2>
-      <h3>If you love technologies and you are addicted to Python and Go 🧩 - feel free - contact me! 📧 </h3>
-      <p class="contact-message">Nowadays, coding is a reality, it's a lifestyle!!</p>
-      <a class="btn" href="mailto:nikdimentiy@yahoo.com">CONTACT ME</a>
+        <h2>Get In Touch</h2>
+        <h3>
+            If you love technologies and you are addicted to Python and Go 🧩 -
+            feel free - contact me! 📧
+        </h3>
+        <p class="contact-message">
+            Nowadays, coding is a reality, it's a lifestyle!!
+        </p>
+        <a class="btn" href="mailto:nikdimentiy@yahoo.com">CONTACT ME</a>
     </div>
-  </div>
+</div>
 
-
-  <div class="bottom-container">
-    <a class="footer-link" href="https://www.linkedin.com/in/dmitriy-nikey-54079837/">LinkedIn</a>
+<div class="bottom-container">
+    <a
+            class="footer-link"
+            href="https://www.linkedin.com/in/dmitriy-nikey-54079837/"
+    >LinkedIn</a
+    >
     <a class="footer-link" href="https://github.com/nikdimentiy">GitHub</a>
     <p class="copyright">© 2023 Dmitriy Nikey @ MySelfProduction.</p>
-  </div>
-</body>
+</div>
+<div id="visitor-counter"></div>
 
+<script>
+    // function to get current date in YYYY-MM-DD format
+    function getCurrentDate() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0");
+        const day = String(now.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+    }
+
+    // function to fetch visitor count data for current date
+    async function getVisitorCount() {
+        const currentDate = getCurrentDate();
+        const response = await fetch(`/api/visitor-count?date=${currentDate}`);
+        const data = await response.json();
+        return data.count;
+    }
+
+    // function to update visitor counter element with count
+    async function updateVisitorCounter() {
+        const visitorCounter = document.getElementById("visitor-counter");
+        const visitorCount = await getVisitorCount();
+        visitorCounter.innerText = `Today's Visitors: ${visitorCount}`;
+    }
+
+    // update visitor counter on page load and every 10 seconds
+    updateVisitorCounter();
+    setInterval(updateVisitorCounter, 10000);
+</script>
+</body>
 </html>
